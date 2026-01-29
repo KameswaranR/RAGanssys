@@ -31,5 +31,5 @@ A production-ready Retrieval-Augmented Generation (RAG) system built with **Fast
 ### Installation
 1. **Clone the repo:**
    ```bash
-   git clone [https://github.com/yourusername/rag-system.git](https://github.com/yourusername/rag-system.git)
+   git clone [https://github.com/KameswaranR/RAGanssys.git]
    cd rag-system
