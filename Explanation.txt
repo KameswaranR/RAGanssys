@@ -1,0 +1,18 @@
+Why 700 Character Chunk Size?
+
+I selected a 700-character chunk size with a 100-character overlap.
+Efficiency: The all-MiniLM-L6-v2 model is optimized for approximately 256–512 tokens. 700 characters (~150-200 tokens) ensure the context fits comfortably within the model's window without truncation.
+Context Integrity: The 100-character overlap ensures that semantic information split between chunks is preserved, reducing the risk of a "broken context" where an answer depends on the end of one chunk and the start of another.
+
+Observed Retrieval Failure
+
+A common failure case observed was Lexical Gap.
+Scenario: If a user asks "What is the compensation?" but the document only uses the word "salary," the similarity score might drop.
+Cause: While dense embeddings handle synonyms better than keyword search, they can still fail if the specific technical jargon isn't strongly associated in the embedding model's training data.
+
+Tracked Metric: Latency
+
+I tracked End-to-End Latency for the /query endpoint.
+Retrieval (FAISS): ~5ms
+LLM Generation (HF API): 1.2s - 2.5s
+Conclusion: The bottleneck is external API inference. For production, implementing a Redis Cache for common queries would drastically improve user experience by bypassing the LLM call for repetitive questions.
