@@ -33,3 +33,21 @@ A production-ready Retrieval-Augmented Generation (RAG) system built with **Fast
    ```bash
    git clone [https://github.com/KameswaranR/RAGanssys.git]
    cd rag-system
+
+Setup environment:
+
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # Windows: venv\Scripts\activate
+   pip install -r requirements.txt
+
+Configure API Key: Create a .env file:
+
+   ```bash
+   Code snippet
+   HF_TOKEN=your_huggingface_token_here
+
+Run Server:   
+
+   ```bash
+   uvicorn main:app --reload
